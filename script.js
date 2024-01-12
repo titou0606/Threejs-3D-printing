@@ -59,7 +59,7 @@ const legHeight = 5; // Hauteur des pieds
 const legRadius = 0.2; // Rayon des pieds
 
 // Créer la géométrie du dessus de la table
-const tableTopGeometry = new THREE.BoxGeometry(tableLength, tableWidth, tableHeight); // dimensions à ajuster selon vos besoins
+const tableTopGeometry = new THREE.BoxGeometry(tableLength, tableWidth, tableHeight, 100, 100, 100  ); // dimensions à ajuster selon vos besoins
 
 // Créer la géométrie des pieds de la table
 const legGeometry = new THREE.CylinderGeometry(legRadius, legRadius, legHeight, 32); // hauteur et rayon à ajuster
@@ -67,12 +67,18 @@ const legGeometry = new THREE.CylinderGeometry(legRadius, legRadius, legHeight, 
 // Charger la texture
 const textureLoader = new THREE.TextureLoader();
 const woodTexture = textureLoader.load('wood.jpg');
-
+const woodDisplacementTexture = textureLoader.load('wooddisplacementmap.jpg');
 // Créer le matériau
-const material = new THREE.MeshStandardMaterial({ map: woodTexture });
+const material = new THREE.MeshStandardMaterial({ map: woodTexture});
+const material2 = new THREE.MeshStandardMaterial({ 
+    map: woodTexture , 
+    displacementMap : woodDisplacementTexture, 
+    displacementScale: 0.1,
+    normalMap: textureLoader.load('NormalMap.png')
+});
 
 // Créer le dessus de la table et ajouter à la scène
-const tableTop = new THREE.Mesh(tableTopGeometry, material);
+const tableTop = new THREE.Mesh(tableTopGeometry, material2);
 tableTop.position.y = -1.5; // ajuster la position en y
 
 // Créer et ajouter les pieds de la table
@@ -207,7 +213,15 @@ button.addEventListener('click', () => {
 
 });
 
-
+const button2 = document.getElementById('monBouton');
+button2.addEventListener('click', () => {
+    var texte = document.getElementById('texteCache');
+    if (texte.style.display === "none") {
+        texte.style.display = "block";
+    } else {
+        texte.style.display = "none";
+    }
+});
 
 
 
@@ -259,10 +273,8 @@ const animate = () => {
         pastcoordy = group.position.y ;
         pastcoordz = group.position.z ;
 
-        group.position.set(Math.cos(t)*r,0,Math.sin(t)*r);
-        // sphere.position.x = offset.x + group.position.x;
-        // sphere.position.y = offset.y + group.position.y;
-        // sphere.position.z = offset.z + group.position.z;
+        group.position.set(Math.cos(t)*r,t/100,Math.sin(t)*r);
+        
 
         if(i%5==0){
             //créer une geo(sphérique) dans la boucle
@@ -271,7 +283,10 @@ const animate = () => {
             // const cylinder = new THREE.Mesh( geometry, material ); scene.add( cylinder );
             const geometry2 = new THREE.CylinderGeometry( 0.05, 0.05, 0.1, 50 , 1, false, 17); 
             const cylinder = new THREE.Mesh( geometry2, material ); 
-            cylinder.rotation.x = (i / 52.5) * Math.PI / 2;
+            cylinder.rotateX(Math.PI / 2);
+            cylinder.rotateZ(t);
+            // cylinder.rotateZ((i / 52.5) * Math.PI / 2);
+  
             cylinder.position.x = offset.x + group.position.x;
             cylinder.position.y = offset.y + group.position.y;
             cylinder.position.z = offset.z + group.position.z;
@@ -300,3 +315,6 @@ const animate = () => {
 
 // Call animate for the first time
 animate();
+
+//si je veux recommit je recommit avec un nouveau nom 
+// puis je git push tout simplement ("git push")

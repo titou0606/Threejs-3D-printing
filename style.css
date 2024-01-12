@@ -15,3 +15,16 @@ canvas {
     padding: 10px;
     z-index: 100;
 }
+
+#monBouton {
+    position: absolute;
+    top: 200px;  /* Ajustez ces valeurs */
+    left: 250px; /* Ajustez ces valeurs */
+}
+
+#texteCache {
+    position: absolute;
+    top: 100px;  /* Ajustez ces valeurs */
+    left: 100px; /* Ajustez ces valeurs */
+    display: none;
+}

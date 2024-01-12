@@ -135,7 +135,7 @@ const group = new THREE.Group();
 const loader = new GLTFLoader();
 
 // Chargez votre modèle GLTF
-loader.load('prout.glb', (gltf) => {
+loader.load('nozzle_head.glb', (gltf) => {
     const model = gltf.scene;
 
     // Charger la texture
@@ -271,7 +271,7 @@ const animate = () => {
             // const cylinder = new THREE.Mesh( geometry, material ); scene.add( cylinder );
             const geometry2 = new THREE.CylinderGeometry( 0.05, 0.05, 0.1, 50 , 1, false, 17); 
             const cylinder = new THREE.Mesh( geometry2, material ); 
-            cylinder.rotation.y = (i / 52.5) * Math.PI / 2;
+            cylinder.rotation.x = (i / 52.5) * Math.PI / 2;
             cylinder.position.x = offset.x + group.position.x;
             cylinder.position.y = offset.y + group.position.y;
             cylinder.position.z = offset.z + group.position.z;

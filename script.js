@@ -103,13 +103,13 @@ const offset = new THREE.Vector3(-0.038,-1.2,0.03);
 // scene.add(sphere);
 
 
-const geometry2 = new THREE.CylinderGeometry( 0.05, 0.05, 0.1, 50 , 1, false, 17); 
-const cylinder = new THREE.Mesh( geometry2, material ); 
-cylinder.rotation.x = Math.PI / 2;
-cylinder.position.y=-1.2;
-cylinder.position.x=-0.038;
-cylinder.position.z=0.03  ;
-scene.add( cylinder );
+// const geometry2 = new THREE.CylinderGeometry( 0.05, 0.05, 0.1, 50 , 1, false, 17); 
+// const cylinder = new THREE.Mesh( geometry2, material ); 
+// cylinder.rotation.x = Math.PI / 2;
+// cylinder.position.y=-1.2;
+// cylinder.position.x=-0.038;
+// cylinder.position.z=0.03  ;
+// scene.add( cylinder );
 
 // Adding a background
 let textureEquirec = textureLoader.load( 'ski1.jpg' );
